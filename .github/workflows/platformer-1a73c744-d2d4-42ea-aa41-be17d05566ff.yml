@@ -22,8 +22,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build the Docker image
-        run: docker build --tag
-          ${SERVICE_NAME}:${{steps.event-version.outputs.SOURCE_TAG }} --file 3/alpine
+        run: docker build -t ${SERVICE_NAME}:${{steps.event-version.outputs.SOURCE_TAG }} 3/alpine
       - name: Docker Push
         run: docker push $SERVICE_NAME:${{steps.event-version.outputs.SOURCE_TAG }}
       - name: Platformer Deploy
